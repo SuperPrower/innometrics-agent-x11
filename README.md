@@ -3,16 +3,16 @@
 ## Building
 ### Requirements
 - Qt5
-- xcb and xcb_util-wm
-- sqlite
+- `xcb` and `xcb_util-wm`
+- `sqlite`
 
 ### Compiling
-1. Create a build directory. =cd= into it:
+1. Create a build directory. `cd` into it:
 ```shell
 mkdir build && cd build
 ```
 
-2. Call =qmake= referencing the =.pro= file:
+2. Call `qmake` referencing the `.pro` file:
 ```shell
 qmake ../x-innometrics.pro
 ```
