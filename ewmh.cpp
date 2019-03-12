@@ -4,7 +4,9 @@
 
 #include <xcb/xcb_event.h>
 
-EWMH_Client::EWMH_Client() {
+EWMH_Client::EWMH_Client(QObject *parent)
+	: QThread(parent)
+{
 	this->xcb_conn = xcb_connect(NULL, &this->screen_nbr);
 	this->ewmh_conn = (xcb_ewmh_connection_t*) malloc(sizeof(xcb_ewmh_connection_t));
 
@@ -16,7 +18,7 @@ EWMH_Client::EWMH_Client() {
 	}
 
 	// TODO: check this with multi-monitor setup
-	qInfo() << this->screen_nbr;
+	// qInfo() << this->screen_nbr;
 
 	const xcb_setup_t *setup = xcb_get_setup(xcb_conn);
 	xcb_screen_iterator_t iter = xcb_setup_roots_iterator(setup);

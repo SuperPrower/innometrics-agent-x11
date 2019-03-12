@@ -13,7 +13,7 @@
 class EWMH_Client : public QThread {
 	Q_OBJECT;
 public:
-	EWMH_Client();
+	EWMH_Client(QObject *parent = nullptr);
 	~EWMH_Client();
 
 	void run();
@@ -33,8 +33,8 @@ private:
 	// Helper functions to get string from answer
 	QString getEwmhReplyString (xcb_ewmh_get_utf8_strings_reply_t* reply);
 	QString getIcccmReplyString (xcb_icccm_get_text_property_reply_t* reply);
-	
-	
+
+
 signals:
 	void newActiveWindow(QString className, QString windowName);
 };
