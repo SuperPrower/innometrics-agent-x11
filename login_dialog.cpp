@@ -3,24 +3,15 @@
 LoginDialog::LoginDialog(QWidget *parent)
 	:QDialog(parent)
 {
-	gridLayout = new QGridLayout();
-
-	labelUsername = new QLabel("E-Mail");
-	editUsername = new QLineEdit();
-
-	labelPassword = new QLabel("Password");
-	editPassword = new QLineEdit();
 	editPassword->setEchoMode(QLineEdit::Password);
 
-	gridLayout->addWidget(labelUsername,	0, 0); 
-	gridLayout->addWidget(editUsername,	0, 1, 1, -1);
+	gridLayout->addWidget(labelEmail,	0, 0);
+	gridLayout->addWidget(editEmail,	0, 1, 1, -1);
 	gridLayout->addWidget(labelPassword,	1, 0);
 	gridLayout->addWidget(editPassword,	1, 1, 1, -1);
 
-	message = new QLabel();
 	message->hide();
 	message->setStyleSheet("QLabel { color : red; }");
-
 
 	gridLayout->addWidget(message,		2, 0, 1, -1);
 
@@ -35,25 +26,28 @@ LoginDialog::LoginDialog(QWidget *parent)
 	this->setLayout(gridLayout);
 
 	// Signals
+	connect(newAccount, &QPushButton::clicked, this, &LoginDialog::wantRegister);
 	connect(cancel, &QPushButton::clicked, this, &LoginDialog::close);
 	connect(login, &QPushButton::clicked, this, &LoginDialog::checkLogin);
 }
 
 void LoginDialog::checkLogin() {
-	if (editUsername->displayText().isEmpty()) {
+	if (editEmail->displayText().isEmpty()) {
 		message->setText("Input e-mail");
 		message->show();
 	} else if (editPassword->displayText().isEmpty()) {
 		message->setText("Input password");
 		message->show();
 	} else {
-		message->clear();	
+		message->clear();
 		message->hide();
-		emit acceptLogin(editUsername->text(), editPassword->text());
+		this->setEnabled(false);
+		emit acceptLogin(editEmail->text(), editPassword->text());
 	}
 }
 
 void LoginDialog::loginFailed(QString reason) {
+	this->setEnabled(true);
 	message->setText(reason);
 	message->show();
 }
