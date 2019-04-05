@@ -3,10 +3,10 @@
 MenuBar::MenuBar(QWidget *parent)
 	: QMenuBar(parent)
 {
-	userMenu = new QMenu("User");
-	statisticsMenu = new QMenu("Statistics");
-
 	authorizeAction = userMenu->addAction("Login");
+	userMenu->addSeparator();
+	hideAction = userMenu->addAction("Hide");
+	exitAction = userMenu->addAction("Close");
 
 	this->addMenu(userMenu);
 	this->addMenu(statisticsMenu);

@@ -5,7 +5,9 @@
 #include "activities.h"
 #include "networking.h"
 #include "ewmh.h"
+#include "db_connection.h"
 #include "login_dialog.h"
+#include "registration_dialog.h"
 
 #include <QMainWindow>
 #include <QCloseEvent>
@@ -16,6 +18,9 @@
 #include <QStatusBar>
 #include <QMenuBar>
 #include <QMenu>
+#include <QDir>
+#include <QSettings>
+#include <QStandardPaths>
 
 class MainWindow : public QMainWindow
 {
@@ -34,11 +39,9 @@ private:
 	QWidget *centralWidget;
 	QVBoxLayout *layout;
 
-	// main window
-	// QTabWidget *tabWidget;
-	// QWidget *tab;		// Recent Activities
-	// QWidget *tab_2;		// This Session Activities
-	Activities *activities;
+	QTabWidget *tabWidget;
+	Activities *recentActivities;
+	Activities *allActivities;
 
 	MenuBar *menuBar;
 	QToolBar *mainToolBar;
@@ -46,11 +49,14 @@ private:
 
 	// system tray
 	QSystemTrayIcon *trayIcon;
-	QMenu *trayIconMenu;
 
-	// 
+	// Internal classes
 	Networking *networking;
 	EWMH_Client *ewmhClient;
+	DB_Connection *dbConnection;
+
+	// Settings and DB location
+	QDir data_location;
 
 	// Current Activity
 	QString wmClass, wName;
@@ -58,6 +64,7 @@ private:
 
 	// Dialog Boxes
 	LoginDialog *loginDialog;
+	RegistrationDialog *registrationDialog;
 
 };
 
