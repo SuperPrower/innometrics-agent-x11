@@ -5,11 +5,11 @@
 Activities::Activities(QWidget *parent)
 	: QTableWidget(parent)
 {
-	this->setColumnCount(4);
+	this->setColumnCount(3);
 	this->setSortingEnabled(false);
 
 	QStringList header;
-	header << "WM Class" << "Window Name" << "Start Time" << "End Time";
+	header << "Application Name" << "Start Time" << "End Time";
 	this->setHorizontalHeaderLabels(header);
 	this->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -21,10 +21,9 @@ Activities::Activities(QWidget *parent)
 
 }
 
-void Activities::putActivity(QString wmClass, QString wName, QString startTime, QString endTime) {
+void Activities::putActivity(Activity& activity) {
 	this->insertRow(0);
-	this->setItem(0, 0, new QTableWidgetItem(wmClass));
-	this->setItem(0, 1, new QTableWidgetItem(wName));
-	this->setItem(0, 2, new QTableWidgetItem(startTime));
-	this->setItem(0, 3, new QTableWidgetItem(endTime));
+	this->setItem(0, 0, new QTableWidgetItem(activity.appName));
+	this->setItem(0, 1, new QTableWidgetItem(activity.startTime));
+	this->setItem(0, 2, new QTableWidgetItem(activity.endTime));
 }

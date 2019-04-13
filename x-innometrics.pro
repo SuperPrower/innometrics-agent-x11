@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network widgets
+QT       += core gui network widgets sql
 
 lessThan(QT_MAJOR_VERSION, 5): error("requires Qt 5")
 
@@ -31,17 +31,21 @@ SOURCES += \
         main.cpp        \
         ewmh.cpp        \
         networking.cpp  \
+	db_connection.cpp	\
         mainwindow.cpp  \
-	login_dialog.cpp \
+	login_dialog.cpp	\
+	registration_dialog.cpp	\
 	activities.cpp	\
         menubar.cpp
 
 HEADERS += \
 	ewmh.h		\
         networking.h    \
+	db_connection.h	\
         mainwindow.h    \
 	activities.h	\
 	login_dialog.h	\
+	registration_dialog.h	\
         menubar.h
 
 FORMS +=

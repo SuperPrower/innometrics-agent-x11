@@ -23,3 +23,7 @@ make
 ```
 
 ## Running
+Run `x-innometrics` binary. Login or Register from `User` menu. From now on, if the server is up, your activity will be sent to the remote innometrics server.
+
+## Storage
+Application should create a directory `~/.local/share/x-innometrics` and store setting and database for activities.
