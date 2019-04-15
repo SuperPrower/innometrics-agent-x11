@@ -81,7 +81,8 @@ MainWindow::MainWindow() {
 
 	// Sub-objects
 	// TODO: set parents?
-	networking = new Networking("http://188.130.155.81:8120");
+	// networking = new Networking("http://188.130.155.81:8120");
+	networking = new Networking();
 	ewmhClient = new EWMH_Client();
 	ewmhClient->start();
 
